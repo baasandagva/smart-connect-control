@@ -1,0 +1,147 @@
+Smart Arduino/ESP32 Remote Control Android App — Project Export Guide
+
+This project is an Android application designed to remotely control a smart device built using ESP32 and Arduino-based actuator modules.
+The main purpose of this app is to allow the user to connect to the ESP32 through Wi-Fi and remotely send commands to control the smart hardware (doors, switches, relays, motors, sensors, etc.).
+
+📌 What this app does
+
+Connects to ESP32 using Wi-Fi (HTTP requests / custom TCP endpoint)
+
+Sends control commands (ON/OFF, OPEN/CLOSE, START/STOP, etc.)
+
+Receives status data from ESP32 (optional JSON response)
+
+Displays sensor information if provided by ESP32
+
+Works fully offline inside the same local Wi-Fi network
+
+Will be compiled and run inside Android Studio
+
+📁 Required Android Project Structure
+
+Make sure this Replit project includes the following files so that Android Studio can import it correctly:
+
+/app
+    /src
+        /main
+            /java/... (your Kotlin/Java code)
+            /res/... (xml layouts, drawables)
+            AndroidManifest.xml
+    build.gradle (Module: app)
+build.gradle (Project)
+settings.gradle
+gradle.properties (optional)
+gradlew
+gradlew.bat
+/gradle/wrapper/... (wrapper files)
+
+
+⚠ DO NOT include:
+
+local.properties
+/build folders
+/.gradle folders
+/.idea (optional)
+
+🔌 ESP32 Connection Information
+
+Your Android app interacts with ESP32 using the following communication rules:
+
+Connection Type: Wi-Fi (HTTP protocol)
+Default ESP32 endpoint:
+http://<ESP32_IP_ADDRESS>/<command>
+
+
+Example commands:
+
+http://192.168.1.55/open
+http://192.168.1.55/close
+http://192.168.1.55/on
+http://192.168.1.55/off
+
+
+If your ESP32 uses JSON responses, the app expects:
+
+{"status":"ok","device":"opened"}
+
+⚙️ Permissions Required in Manifest
+
+Make sure the following permissions exist inside AndroidManifest.xml:
+
+<uses-permission android:name="android.permission.INTERNET" />
+<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+
+If Bluetooth will be used (optional):
+
+<uses-permission android:name="android.permission.BLUETOOTH" />
+<uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+
+🚀 How to Import This Project in Android Studio
+
+Download this project as .zip
+
+Open Android Studio
+
+Click: File → Open
+
+Choose the extracted project folder
+
+Wait for Gradle Sync (Android Studio will download required SDKs automatically)
+
+Run the app on a physical device or emulator
+
+If Gradle does not sync:
+
+Check Java version (must be 17 or 11)
+
+Delete local.properties if it exists
+
+Rebuild using:
+
+./gradlew assembleDebug
+
+🔧 How the App Sends Commands to ESP32
+
+Example Kotlin/Java HTTP request:
+
+fun sendCommand(command: String) {
+    val url = "http://192.168.1.55/$command"
+    Thread {
+        try {
+            val result = URL(url).readText()
+            println("ESP32 Response: $result")
+        } catch (e: Exception) {
+            println("Error: ${e.message}")
+        }
+    }.start()
+}
+
+📦 Build Requirements
+
+Android Gradle Plugin: 7.x+
+
+Minimum SDK: 21+
+
+Target SDK: 33+
+
+Java 11 / 17
+
+Internet permission enabled
+
+ESP32 reachable via Wi-Fi
+
+✔️ Project Purpose Summary (for developers)
+
+This Android application is part of a smart automation system that allows users to:
+
+Control Arduino/ESP32-powered devices remotely
+
+Monitor status from sensors
+
+Interact over Wi-Fi network
+
+Use simple UI to trigger hardware actions in real-time
+
+This file explains everything required to successfully open, edit, and build the app in Android Studio.

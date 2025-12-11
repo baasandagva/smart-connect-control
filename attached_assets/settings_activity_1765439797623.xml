@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:padding="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/btnBack"
+            android:src="@drawable/ic_back"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:padding="4dp"/>
+
+        <TextView
+            android:id="@+id/txtSettingsTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Тохиргоо"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:paddingTop="16dp"
+            android:paddingBottom="20dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="16dp"
+            android:background="@drawable/bg_capsule_off">
+
+            <TextView
+                android:id="@+id/txtFakeLabel"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Fake Mode (Demo)"
+                android:textSize="18sp"/>
+
+            <Switch
+                android:id="@+id/switchFakeMode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <View android:layout_width="match_parent" android:layout_height="20dp"/>
+
+        <TextView
+            android:id="@+id/btnLanguage"
+            android:padding="16dp"
+            android:background="@drawable/bg_capsule_off"
+            android:text="Хэл солих"
+            android:textSize="18sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <View android:layout_width="match_parent" android:layout_height="20dp"/>
+
+        <TextView
+            android:id="@+id/btnReconnectWiFi"
+            android:padding="16dp"
+            android:background="@drawable/bg_capsule_off"
+            android:text="Wi-Fi дахин холбох"
+            android:textSize="18sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <View android:layout_width="match_parent" android:layout_height="20dp"/>
+
+        <TextView
+            android:id="@+id/btnAbout"
+            android:padding="16dp"
+            android:background="@drawable/bg_capsule_off"
+            android:text="Хөгжүүлэгчийн тухай"
+            android:textSize="18sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+</ScrollView>
