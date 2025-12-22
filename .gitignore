@@ -12,3 +12,8 @@ build/
 
 # misc
 .DS_Store
+client/README.md
+client/public/*.png
+docs/
+
+
