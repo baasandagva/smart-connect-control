@@ -1,28 +1,49 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="mn">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+  <title>Smart Control</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <meta property="og:title" content="Smart Control" />
-  <meta property="og:description" content="Remote control for your ESP32 smart home devices" />
+  <meta property="og:description" content="Remote control for ESP32 smart devices" />
   <meta property="og:type" content="website" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Smart Control" />
-  <meta name="twitter:description" content="Remote control for your ESP32 smart home devices" />
 
-  <link rel="icon" type="image/png" href="/favicon.png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"
-    rel="stylesheet">
+  <link rel="icon" type="image/png" href="./favicon.png" />
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', Arial, sans-serif;
+      background: #0f172a;
+      color: #e5e7eb;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+    .card {
+      background: #020617;
+      padding: 40px;
+      border-radius: 14px;
+      text-align: center;
+      box-shadow: 0 0 40px rgba(0,0,0,.6);
+    }
+    h1 {
+      margin-bottom: 12px;
+      font-size: 28px;
+    }
+    p {
+      opacity: 0.85;
+    }
+  </style>
 </head>
 
 <body>
-  <div id="root"></div>
-  <script type="module" src="/src/main.tsx"></script>
+  <div class="card">
+    <h1>Smart Control</h1>
+    <p>Static GitHub Pages deployment амжилттай.</p>
+    <p>ESP32 төхөөрөмжийг удирдах веб интерфейс.</p>
+  </div>
 </body>
-
 </html>
