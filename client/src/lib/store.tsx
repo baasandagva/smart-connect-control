@@ -49,6 +49,25 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     });
   };
 
+  const checkStatus = () => {
+    const baseUrl = "https://euphemistic-krista-included.ngrok-free.dev";
+    setConnectionStatus(t.status.connecting);
+    fetch(`${baseUrl}/api/status`)
+      .then(res => res.text()) // Assuming text or json
+      .then(data => {
+        setConnectionStatus("Device Online: " + data);
+      })
+      .catch(() => {
+        setConnectionStatus(t.status.noConnection);
+      });
+  };
+
+  useEffect(() => {
+    if (!fakeMode) {
+      checkStatus();
+    }
+  }, [fakeMode]);
+
   const addDevice = (name: string) => {
     const newDevice = {
       id: Math.random().toString(36).substr(2, 9),
@@ -78,8 +97,17 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
             setConnectionStatus(t.status.ready);
           }, 1500);
         } else {
-          // Real mode simulation (since we can't actually hit ESP32 from Replit container easily without CORS/Proxy)
-          console.log(`Sending HTTP request to 192.168.4.1/${newState ? 'on' : 'off'}`);
+          // Real mode: Send request to ngrok URL
+          const baseUrl = "https://abcd-1234.ngrok-free.app";
+          fetch(`${baseUrl}/api/${newState ? 'on' : 'off'}`)
+            .then(res => {
+              if (res.ok) setConnectionStatus(`${d.name} turned ${newState ? 'on' : 'off'}`);
+              else setConnectionStatus("Failed to communicate with device");
+            })
+            .catch(err => {
+              console.error(err);
+              setConnectionStatus("Connection error");
+            });
         }
         return { ...d, isOn: newState };
       }
